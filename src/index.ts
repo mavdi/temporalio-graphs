@@ -22,4 +22,9 @@ export type {
   WorkflowInterceptorsFactory,
 } from './interceptor/index.js';
 export { generateMermaid, generatePathDescriptions } from './generator/index.js';
-export { generateDecisionPermutations, buildGraphFromPaths } from './builder/index.js';
+export {
+  generateDecisionPermutations,
+  buildGraphFromPaths,
+  buildGraph,
+} from './builder/index.js';
+export type { BuildGraphOptions } from './builder/index.js';
