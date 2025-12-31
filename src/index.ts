@@ -29,3 +29,4 @@ export {
 } from './builder/index.js';
 export type { BuildGraphOptions } from './builder/index.js';
 export { generateViewerHtml } from './viewer/index.js';
+export { createMockActivities, type MockActivityOptions } from './mock/index.js';

@@ -1,11 +1,42 @@
 // examples/money-transfer/build-graph.ts
 
-import { buildGraph, generateViewerHtml } from 'temporalio-graphs';
-import { moneyTransferWorkflow, type TransferInput } from './workflows.js';
+import { buildGraph, generateViewerHtml, createMockActivities } from 'temporalio-graphs';
+import { MoneyTransferActivities } from './activities.js';
 import * as fs from 'fs';
 
+// Create mock activities for graph building
+const mockActivitiesInstance = new MoneyTransferActivities();
+const activities = createMockActivities<MoneyTransferActivities>({
+  activitiesClass: mockActivitiesInstance,
+});
+
+// Inline workflow definition using mock activities
+async function moneyTransferWorkflow(input: {
+  fromAccount: string;
+  toAccount: string;
+  amount: number;
+  fromCurrency: string;
+  toCurrency: string;
+}): Promise<void> {
+  await activities.withdraw(input.fromAccount, input.amount);
+
+  let amount = input.amount;
+
+  if (await activities.needsCurrencyConversion(input.fromCurrency, input.toCurrency)) {
+    amount = await activities.convertCurrency(amount, input.fromCurrency, input.toCurrency);
+  }
+
+  if (await activities.isTaxIdKnown(input.toAccount)) {
+    await activities.notifyTaxAuthority(input.toAccount, amount);
+  } else {
+    amount = await activities.deductWithholdingTax(amount);
+  }
+
+  await activities.deposit(input.toAccount, amount);
+}
+
 async function main() {
-  const input: TransferInput = {
+  const input = {
     fromAccount: 'ACC001',
     toAccount: 'ACC002',
     amount: 1000,

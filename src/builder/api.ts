@@ -33,8 +33,8 @@ export interface BuildGraphOptions {
  * console.log(result.mermaid);
  * ```
  */
-export async function buildGraph(
-  workflow: (...args: unknown[]) => Promise<unknown>,
+export async function buildGraph<TArgs extends unknown[], TResult>(
+  workflow: (...args: TArgs) => Promise<TResult>,
   options: BuildGraphOptions = {}
 ): Promise<GraphResult> {
   const {
@@ -64,7 +64,7 @@ export async function buildGraph(
     graphContext.decisionPlan = plan;
 
     try {
-      await workflow(...workflowArgs);
+      await workflow(...(workflowArgs as TArgs));
     } catch (error) {
       // Workflows may throw during graph building - that's expected
       // We capture the path up to the error
