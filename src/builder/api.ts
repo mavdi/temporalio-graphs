@@ -55,22 +55,40 @@ export async function buildGraph<TArgs extends unknown[], TResult>(
   };
   graphContext.context = context;
 
-  // For now, run with a single decision plan
-  // Full permutation support requires counting decisions first
-  // This is a simplified version - we'll enhance in later tasks
-  const decisionPlans = generateDecisionPermutations(0);
+  // Phase 1: Run workflow once to count decisions
+  graphContext.decisionPlan = [];
+  let decisionCount = 0;
 
-  for (const plan of decisionPlans) {
-    graphContext.decisionPlan = plan;
+  try {
+    await workflow(...(workflowArgs as TArgs));
+  } catch {
+    // Workflows may throw during graph building - that's expected
+  }
 
-    try {
-      await workflow(...(workflowArgs as TArgs));
-    } catch (error) {
-      // Workflows may throw during graph building - that's expected
-      // We capture the path up to the error
+  // Count decisions that were encountered (BEFORE savePath resets it)
+  decisionCount = graphContext.decisionIndex;
+  graphContext.savePath();
+
+  // Phase 2: If we found decisions, explore all permutations
+  if (decisionCount > 0) {
+    // Limit to maxDecisions to avoid exponential explosion
+    const actualDecisions = Math.min(decisionCount, maxDecisions);
+    const decisionPlans = generateDecisionPermutations(actualDecisions);
+
+    // Skip the first plan (all true) since we already ran that
+    for (let i = 1; i < decisionPlans.length; i++) {
+      graphContext.decisionPlan = decisionPlans[i];
+      graphContext.decisionIndex = 0;
+      graphContext.currentPath = [];
+
+      try {
+        await workflow(...(workflowArgs as TArgs));
+      } catch {
+        // Workflows may throw during graph building - that's expected
+      }
+
+      graphContext.savePath();
     }
-
-    graphContext.savePath();
   }
 
   const result = buildGraphFromPaths();

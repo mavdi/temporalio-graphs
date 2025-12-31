@@ -28,12 +28,24 @@ class GraphContext {
     return this._currentPath;
   }
 
+  set currentPath(path: GraphNode[]) {
+    this._currentPath = path;
+  }
+
   get allPaths(): GraphNode[][] {
     return this._allPaths;
   }
 
   get decisionPlan(): boolean[] {
     return this._decisionPlan;
+  }
+
+  get decisionIndex(): number {
+    return this._decisionIndex;
+  }
+
+  set decisionIndex(index: number) {
+    this._decisionIndex = index;
   }
 
   set decisionPlan(plan: boolean[]) {
@@ -45,11 +57,12 @@ class GraphContext {
    * Get next decision result from the plan
    */
   getNextDecision(): boolean {
-    if (this._decisionIndex >= this._decisionPlan.length) {
+    const index = this._decisionIndex++;
+    if (index >= this._decisionPlan.length) {
       // Default to true if we run out of planned decisions
       return true;
     }
-    return this._decisionPlan[this._decisionIndex++];
+    return this._decisionPlan[index];
   }
 
   /**
