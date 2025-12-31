@@ -7,3 +7,8 @@ export type {
   StartChildWorkflowExecutionInput,
   Next,
 } from './graphInterceptor.js';
+export { createGraphBuildingInterceptors } from './interceptorFactory.js';
+export type {
+  WorkflowInterceptors,
+  WorkflowInterceptorsFactory,
+} from './interceptorFactory.js';

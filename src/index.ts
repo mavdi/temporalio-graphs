@@ -10,11 +10,16 @@ export {
   toDecision,
 } from './decorators/index.js';
 export type { DecisionOptions, ToDecisionOptions } from './decorators/index.js';
-export { createGraphInterceptor } from './interceptor/index.js';
+export {
+  createGraphInterceptor,
+  createGraphBuildingInterceptors,
+} from './interceptor/index.js';
 export type {
   GraphInterceptor,
   ActivityInput,
   StartChildWorkflowExecutionInput,
+  WorkflowInterceptors,
+  WorkflowInterceptorsFactory,
 } from './interceptor/index.js';
 
 // Will export more as we build:
