@@ -1,0 +1,63 @@
+{
+  "name": "temporalio-graphs",
+  "version": "0.1.0",
+  "description": "Generate workflow graphs for Temporal by running workflows in mocked-execution mode",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./viewer": {
+      "import": "./dist/viewer/index.js",
+      "types": "./dist/viewer/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "viewer.html"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "lint": "eslint src --ext .ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "temporal",
+    "workflow",
+    "graph",
+    "visualization",
+    "mermaid",
+    "dag"
+  ],
+  "author": "Mark Avdi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mavdi/temporalio-graphs.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@temporalio/client": "^1.14.0",
+    "@temporalio/worker": "^1.14.0",
+    "@temporalio/workflow": "^1.14.0"
+  },
+  "devDependencies": {
+    "@temporalio/client": "^1.14.0",
+    "@temporalio/testing": "^1.14.0",
+    "@temporalio/worker": "^1.14.0",
+    "@temporalio/workflow": "^1.14.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.0.0",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0"
+  }
+}
