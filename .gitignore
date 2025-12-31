@@ -4,3 +4,5 @@ dist/
 .DS_Store
 coverage/
 .env
+examples/money-transfer/workflow.mermaid
+examples/money-transfer/workflow.html
