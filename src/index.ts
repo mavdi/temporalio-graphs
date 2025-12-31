@@ -28,3 +28,4 @@ export {
   buildGraph,
 } from './builder/index.js';
 export type { BuildGraphOptions } from './builder/index.js';
+export { generateViewerHtml } from './viewer/index.js';
