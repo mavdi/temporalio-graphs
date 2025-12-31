@@ -6,3 +6,5 @@ coverage/
 .env
 examples/money-transfer/workflow.mermaid
 examples/money-transfer/workflow.html
+examples/fintech-pipeline/workflow.mermaid
+examples/fintech-pipeline/workflow.html
