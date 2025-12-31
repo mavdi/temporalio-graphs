@@ -21,6 +21,7 @@ export type {
   WorkflowInterceptors,
   WorkflowInterceptorsFactory,
 } from './interceptor/index.js';
+export { generateMermaid, generatePathDescriptions } from './generator/index.js';
 
 // Will export more as we build:
 // export { generateGraph, buildGraph } from './builder/index.js';
