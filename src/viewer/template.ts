@@ -216,6 +216,18 @@ ${escapedDiagram}
         autoPlayInterval = null;
       }
     }
+
+    function zoomIn() {
+      if (panzoomInstance) panzoomInstance.zoomIn();
+    }
+
+    function zoomOut() {
+      if (panzoomInstance) panzoomInstance.zoomOut();
+    }
+
+    function resetView() {
+      if (panzoomInstance) panzoomInstance.reset();
+    }
   </script>
 </body>
 </html>`;

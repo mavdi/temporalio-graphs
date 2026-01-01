@@ -68,4 +68,16 @@ s((Start)) --> FetchData --> e((End))`;
     expect(html).toContain('maxZoom');
     expect(html).toContain('minZoom');
   });
+
+  it('has zoom handler functions defined', () => {
+    const mermaid = 'flowchart LR\nA --> B';
+    const html = generateViewerHtml(mermaid);
+
+    expect(html).toContain('function zoomIn()');
+    expect(html).toContain('function zoomOut()');
+    expect(html).toContain('function resetView()');
+    expect(html).toContain('panzoomInstance.zoomIn');
+    expect(html).toContain('panzoomInstance.zoomOut');
+    expect(html).toContain('panzoomInstance.reset');
+  });
 });
