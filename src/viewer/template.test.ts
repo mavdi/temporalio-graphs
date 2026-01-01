@@ -39,4 +39,14 @@ s((Start)) --> FetchData --> e((End))`;
     expect(html).toContain('panzoom');
     expect(html).toContain('cdn.jsdelivr.net/npm/panzoom');
   });
+
+  it('includes zoom control buttons', () => {
+    const mermaid = 'flowchart LR\nA --> B';
+    const html = generateViewerHtml(mermaid);
+
+    expect(html).toContain('zoomIn()');
+    expect(html).toContain('zoomOut()');
+    expect(html).toContain('resetView()');
+    expect(html).toContain('zoom-controls');
+  });
 });

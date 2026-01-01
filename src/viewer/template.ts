@@ -54,6 +54,11 @@ export function generateViewerHtml(mermaidDiagram: string, title = 'Workflow Gra
     </div>
 
     <div class="graph-container">
+      <div class="zoom-controls">
+        <button class="btn-secondary" onclick="zoomIn()" title="Zoom In">+</button>
+        <button class="btn-secondary" onclick="zoomOut()" title="Zoom Out">-</button>
+        <button class="btn-secondary" onclick="resetView()" title="Reset View">Reset</button>
+      </div>
       <div class="mermaid" id="diagram">
 ${escapedDiagram}
       </div>
