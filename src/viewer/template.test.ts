@@ -58,4 +58,14 @@ s((Start)) --> FetchData --> e((End))`;
     expect(html).toContain('max-height: 90vh');
     expect(html).toContain('overflow: hidden');
   });
+
+  it('initializes panzoom on the SVG element', () => {
+    const mermaid = 'flowchart LR\nA --> B';
+    const html = generateViewerHtml(mermaid);
+
+    expect(html).toContain('panzoomInstance');
+    expect(html).toContain("panzoom(svg,");
+    expect(html).toContain('maxZoom');
+    expect(html).toContain('minZoom');
+  });
 });

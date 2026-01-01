@@ -110,6 +110,7 @@ ${escapedDiagram}
   <script>
     mermaid.initialize({ startOnLoad: true, theme: 'default' });
 
+    let panzoomInstance = null;
     let nodes = [];
     let currentStep = -1;
     let autoPlayInterval = null;
@@ -118,6 +119,17 @@ ${escapedDiagram}
       setTimeout(() => {
         nodes = Array.from(document.querySelectorAll('.node'));
         addClickHandlers();
+
+        // Initialize panzoom on the SVG
+        const svg = document.querySelector('#diagram svg');
+        if (svg) {
+          panzoomInstance = panzoom(svg, {
+            maxZoom: 5,
+            minZoom: 0.25,
+            bounds: true,
+            boundsPadding: 0.1
+          });
+        }
       }, 500);
     });
 
