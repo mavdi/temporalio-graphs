@@ -2,14 +2,18 @@
 
 Generate workflow graphs for [Temporal](https://temporal.io) by running workflows in mocked-execution mode.
 
-TypeScript port of [Temporalio.Graphs](https://github.com/oleg-shilo/Temporalio.Graphs) for .NET.
+> **TypeScript port of [Temporalio.Graphs](https://github.com/oleg-shilo/Temporalio.Graphs) by [Oleg Shilo](https://github.com/oleg-shilo)**
+>
+> The original .NET library provides an elegant approach to visualizing Temporal workflows by executing them in a mocked environment and capturing the execution graph. This TypeScript implementation brings the same capabilities to the Node.js ecosystem.
+
+![Workflow Viewer](docs/images/viewer-screenshot.png)
 
 ## Features
 
 - Generate complete workflow DAGs without running actual activities
 - Capture all decision branches via automatic permutation
 - Output Mermaid flowchart syntax
-- Interactive HTML viewer with step-by-step animation
+- Interactive HTML viewer with pan/zoom and step-by-step animation
 - Support for child workflow visualization
 
 ## Installation
