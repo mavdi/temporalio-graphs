@@ -80,4 +80,12 @@ s((Start)) --> FetchData --> e((End))`;
     expect(html).toContain('panzoomInstance.zoomOut');
     expect(html).toContain('panzoomInstance.reset');
   });
+
+  it('resetSteps also resets the view', () => {
+    const mermaid = 'flowchart LR\nA --> B';
+    const html = generateViewerHtml(mermaid);
+
+    // Check that resetSteps calls resetView or panzoomInstance.reset
+    expect(html).toMatch(/function resetSteps\(\)[\s\S]*?(resetView\(\)|panzoomInstance\.reset)[\s\S]*?function selectStep/);
+  });
 });

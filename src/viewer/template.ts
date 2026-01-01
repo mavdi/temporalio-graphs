@@ -169,6 +169,7 @@ ${escapedDiagram}
         n.classList.remove('activeStep', 'completedStep', 'selectedStep');
       });
       document.getElementById('details').style.display = 'none';
+      resetView();
     }
 
     function selectStep(index) {
