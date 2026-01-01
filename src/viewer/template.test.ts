@@ -31,4 +31,12 @@ s((Start)) --> FetchData --> e((End))`;
     // Should not contain unescaped script
     expect(html).not.toContain('<script>alert(1)</script>');
   });
+
+  it('includes panzoom library script', () => {
+    const mermaid = 'flowchart LR\nA --> B';
+    const html = generateViewerHtml(mermaid);
+
+    expect(html).toContain('panzoom');
+    expect(html).toContain('cdn.jsdelivr.net/npm/panzoom');
+  });
 });
