@@ -6,7 +6,7 @@ Generate workflow graphs for [Temporal](https://temporal.io) by running workflow
 >
 > The original .NET library provides an elegant approach to visualizing Temporal workflows by executing them in a mocked environment and capturing the execution graph. This TypeScript implementation brings the same capabilities to the Node.js ecosystem.
 
-![Workflow Viewer](docs/images/viewer-screenshot.png)
+![Workflow Viewer](docs/images/viewer-demo.gif)
 
 ## Features
 
