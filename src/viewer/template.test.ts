@@ -49,4 +49,13 @@ s((Start)) --> FetchData --> e((End))`;
     expect(html).toContain('resetView()');
     expect(html).toContain('zoom-controls');
   });
+
+  it('has responsive graph container styling', () => {
+    const mermaid = 'flowchart LR\nA --> B';
+    const html = generateViewerHtml(mermaid);
+
+    expect(html).toContain('min-height: 600px');
+    expect(html).toContain('max-height: 90vh');
+    expect(html).toContain('overflow: hidden');
+  });
 });

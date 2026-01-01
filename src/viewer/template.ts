@@ -25,7 +25,32 @@ export function generateViewerHtml(mermaidDiagram: string, title = 'Workflow Gra
     button:hover { opacity: 0.9; }
     .btn-primary { background: #4f46e5; color: white; }
     .btn-secondary { background: #6b7280; color: white; }
-    .graph-container { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .graph-container {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      min-height: 600px;
+      max-height: 90vh;
+      overflow: hidden;
+      position: relative;
+    }
+    .zoom-controls {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      display: flex;
+      gap: 5px;
+    }
+    .zoom-controls button {
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .mermaid { width: 100%; }
     .details { margin-top: 20px; background: white; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     .details h2 { margin-bottom: 10px; font-size: 16px; color: #666; }
